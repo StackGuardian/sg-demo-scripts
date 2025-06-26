@@ -5,17 +5,10 @@ import boto3
 
 
 def check_aws_variables():
-    # Check if neccessary AWS variables are exported to the OS environment
-    if not (
-        os.getenv("AWS_ACCESS_KEY_ID")
-        and os.getenv("AWS_SECRET_ACCESS_KEY")
-        and os.getenv("AWS_DEFAULT_REGION")
-    ):
+    # Check if AWS_DEFAULT_REGION is set in the environment variables
+    if "AWS_DEFAULT_REGION" not in os.environ:
         # If not, show error and exit with 1
-        error(
-            "One of the AWS environment variables is not set."
-            + " Please select configured AWS connector to pass variables."
-        )
+        error("AWS_DEFAULT_REGION is not set in the environment variables.")
         exit(1)
 
 
@@ -42,7 +35,7 @@ def list_ec2_instances():
 
 
 def main():
-    # check_aws_variables()
+    check_aws_variables()
     list_ec2_instances()
 
 
