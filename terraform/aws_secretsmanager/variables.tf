@@ -7,5 +7,5 @@ variable "region" {
 variable "secret_name" {
   description = "The name of the AWS Secrets Manager secret"
   type        = string
-  default     = "terraform/SG/test-secret"
+  default     = ""
 }
