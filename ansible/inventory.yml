@@ -1,0 +1,5 @@
+# inventory.yml
+webservers:
+  hosts:
+    server:
+      ansible_host: "{{ server_ip }}"

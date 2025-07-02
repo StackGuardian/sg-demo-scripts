@@ -1,0 +1,20 @@
+---
+- name: Dynamic Host Playbook
+  hosts: webservers
+  vars:
+    server_ip: "{{ lookup('env', 'ANSIBLE_HOST') }}"
+  become: no
+
+  tasks:
+    - name: Verify Host Connectivity
+      ping:
+
+    - name: Run Shell Command
+      shell: |
+        touch demo_file_$(date +"%H%M") || true
+      register: shell_output
+      ignore_errors: yes
+
+    - name: Display Command Output
+      debug:
+        var: shell_output.stdout_lines
